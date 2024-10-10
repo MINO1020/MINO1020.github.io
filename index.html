@@ -1,325 +1,166 @@
 <style>
-    .reservation-container {
-      border-radius: 15px;
-      background-color: #fff;
-      display: flex;
-      max-width: 480px;
-      width: 100%;
-      padding-bottom: 33px;
-      flex-direction: column;
-      overflow: hidden;
-      margin: 0 auto;
+    .search-container { max-width: 480px; margin: 0 auto; border-radius: 15px;  background-color: #fff; overflow: hidden; }
+    .banner-image { width: 100%; aspect-ratio: 8.7; object-fit: contain; }
+    .main-content { display: flex; flex-direction: column; align-items: center;  margin: 0 auto; /* 부모 요소 안에서 중앙으로 */
+      max-width: 325px;
+      width: 100%; width: 100%; max-width: 355px; }
+    .search-bar { width: 100%; border-radius: 30px; background-color: #fff; box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25); display: flex; align-items: center; padding: 10px; }
+    .search-icon { width: 60px; aspect-ratio: 1.11; object-fit: contain; }
+    .search-input { flex-grow: 1; border: none; outline: none; font-size: 20px; font-weight: 700; color: #D9D9D9; margin-left: 17px; }
+    .filter-section {
+    display: flex;
+    justify-content: space-between; /* 좌측과 우측으로 정렬 */
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
     }
-    
-    .header-image {
-      aspect-ratio: 8.7;
+    .filter-options {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    }
+    .category-filter,
+    .sort-filter {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 10px;
+    }
+    .filter-icon {
+      width: 8px; /* 적당한 크기로 설정 */
+      aspect-ratio: 0.57;
       object-fit: contain;
-      object-position: center;
-      width: 100%;
+      margin: 0 5px; /* 아이콘과 텍스트 사이의 공간 조정 */
     }
-    
-    .content-wrapper {
-      align-self: center;
-      display: flex;
-      width: 100%;
-      max-width: 362px;
-      flex-direction: column;
-      align-items: flex-end;
-    }
-    
-    .time-section {
-      position: relative;
-      display: flex;
-      width: 339px;
-      max-width: 100%;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    
-    .time-header {
-      align-self: stretch;
-      color: #000;
-      letter-spacing: -0.24px;
-      font: 700 24px 'Noto Sans KR', sans-serif;
-    }
-    
-    .time-slots {
-      display: flex;
-      min-height: 34px;
-      width: 217px;
-      max-width: 100%;
-      align-items: center;
-      gap: 21px;
-      justify-content: space-between;
-    }
-    
-    .time-slot {
-      border-radius: 5px;
-      background-color: #d9d9d9;
-      align-self: stretch;
-      display: flex;
-      width: 98px;
-      height: 34px;
-      margin: auto 0;
-      border: 1px solid #d9d9d9;
-    }
-    
-    .time-label {
-      color: #000;
-      letter-spacing: -0.14px;
-      position: absolute;
-      font: 350 14px 'Noto Sans KR', sans-serif;
-    }
-    
-    .divider {
-      min-height: 1px;
-      margin-top: 14px;
-      width: 339px;
-      max-width: 100%;
-      border: 1px solid #2cd268;
-    }
-    
-    .afternoon-section {
-      display: flex;
-      width: 339px;
-      max-width: 100%;
-      flex-direction: column;
-      color: #000;
-      white-space: nowrap;
-      letter-spacing: -0.14px;
-      font: 350 14px 'Noto Sans KR', sans-serif;
-    }
-    
-    .afternoon-header {
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: -0.24px;
-    }
-    
-    .time-row {
-      display: flex;
-      margin-top: 10px;
-      min-height: 34px;
-      width: 100%;
-      align-items: center;
-      gap: 26px;
-      text-align: center;
-    }
-    
-    .time-button {
-        border-radius: 5px;
-      background-color: #d9d9d9;
-      align-self: stretch;
-      display: flex;
-      width: 98px;
-      height: 34px;
-      margin: auto 0;
-      border: 1px solid #d9d9d9;
-    }
-    
- 
-    
-    .info-section {
-      display: flex;
-      margin-top: 14px;
-      width: 335px;
-      max-width: 100%;
-      flex-direction: column;
-      color: #000;
-      letter-spacing: -0.2px;
-      font: 700 20px 'Noto Sans KR', sans-serif;
-    }
-    
-    .info-header {
-      align-self: flex-start;
-      display: flex;
-      align-items: center;
-      text-align: center;
-    }
-    
-    .info-icon {
-      aspect-ratio: 1;
+    .sort-icon {
+      width: 14px;
+      aspect-ratio: 1.75;
       object-fit: contain;
-      object-position: center;
-      width: 24px;
-      align-self: stretch;
-      margin: auto 0;
+      margin-left: 6px;
     }
-    
-    .info-title {
-      align-self: stretch;
-      width: 198px;
-      margin: auto 0;
+    .map-icon {
+    width: 65px;
+    aspect-ratio: 1.67;
+    object-fit: contain;
+    margin-left: auto; /* 우측 정렬 */
     }
-    
-    .info-subtitle {
-      margin-top: 5px;
-    }
-    
-    .info-content {
-      border-radius: 5px;
-      display: flex;
-      margin-top: 5px;
-      width: 100%;
-      flex-direction: column;
-      font-size: 12px;
-      font-weight: 350;
-      letter-spacing: -0.12px;
-      justify-content: center;
-      padding: 2px 0;
-    }
-    
-    .info-text {
-      border-radius: 5px;
-      background-color: #d9d9d9;
-      padding: 11px 1px;
-      border: 1px solid #d9d9d9;
-    }
-    
-    .additional-info {
-      display: flex;
-      margin-top: 14px;
-      width: 100%;
-      flex-direction: column;
-      color: #000;
-      letter-spacing: -0.2px;
-      padding: 5px 0 52px;
-      font: 700 20px 'Noto Sans KR', sans-serif;
-    }
-    
-    .additional-info-divider {
-      width: 100%;
-      height: 1px;
-      border: 1px solid #2cd268;
-    }
-    
-    .additional-info-content {
-      display: flex;
-      margin-top: -47px;
-      width: 198px;
-      max-width: 100%;
-      flex-direction: column;
-    }
-    
-    .additional-info-list {
-      display: flex;
-      width: 100%;
-      flex-direction: column;
-    }
-    
-    .next-button-container {
-      display: flex;
-      margin-top: 14px;
-      width: 100%;
-      flex-direction: column;
-      color: #fff;
-      white-space: nowrap;
-      text-align: center;
-      letter-spacing: -0.12px;
-      font: 400 12px 'Noto Sans KR', sans-serif;
-    }
-    
-    .next-button {
-      border-radius: 5px;
-      display: flex;
-      width: 100%;
-      flex-direction: column;
-    }
-    
-    .next-button-text {
-      border-radius: 5px;
-      background-color: #2cd268;
-      padding: 9px 70px;
-    }
+    .results-list { width: 100%; margin-top: 21px; }
+    .result-card { border-radius: 15px; background-color: #fff; box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25); padding: 11px 20px; border: 1px solid #D9D9D9; margin-bottom: 21px; }
+    .result-content { display: flex; align-items: center; gap: 18px; }
+    .result-image-container { width: 142px; }
+    .result-image { width: 120px; aspect-ratio: 1; object-fit: contain; border-radius: 5px; }
+    .result-logo { width: 142px; margin-top: 9px; }
+    .result-details { flex-grow: 1; }
+    .result-title { color: #000; text-align: center; font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+    .star-rating { display: flex; justify-content: center; gap: 8px; margin-bottom: 4px; }
+    .star-icon { width: 20px; aspect-ratio: 1; }
+    .review-count { color: #000; text-align: center; font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+    .business-info { color: #635F5F; text-align: center; font-size: 16px; }
+    .divider { height: 1px; background-color: #D9D9D9; margin: 21px 0; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
     </style>
-    
-    <section class="reservation-container">
-      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/6eaf52af9859c7fc239bbc4efd2c7a7e5efa2df526897315d98bc3176090021a?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="" class="header-image" />
-      <div class="content-wrapper">
-        <div class="time-section">
-          <h2 class="time-header">오전</h2>
-          <div class="time-slots">
-            <div class="time-slot"></div>
-            <div class="time-slot"></div>
-          </div>
-          <span class="time-label" style="left: 150px; bottom: 8px;">11:30</span>
-          <span class="time-label" style="left: 30px; bottom: 8px;">11:00</span>
+<section class="search-container">
+  <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9a802e4e1b924c642cce4f2cfef0cb1bd3098d2b73f3bce945725d088a3422d9?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="" class="banner-image">
+  <div class="main-content">
+    <form class="search-bar" role="search">
+      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d7858ec09c49365e91e435bfb99e7b6ce7260636f2e60f7ae7fc545f4496ce10?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="" class="search-icon">
+      <label for="search-input" class="visually-hidden">Where to go?</label>
+      <input type="text" id="search-input" class="search-input" placeholder="Where to go?" aria-label="Search for a place">
+    </form>
+    <div class="filter-section">
+        <div class="filter-options">
+            <div class="category-filter">
+                <span>카테고리</span>
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/4c2a4c600916f1f3b0a048c72d583bbe0c576c301a9be7acb2a35a1c271d1625?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="" class="filter-icon">
+                <span>음식점 별</span>
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/989be2a38e695cae3c6b05a20adf8b6c5adff27d9a506b713b9609b99e650940?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="" class="filter-icon">
+                <span>피자</span>
+            </div>
+            <div class="sort-filter">
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/4bf3bb9f69c3ce9bca4c71b82d790939ef41ec70f3405ee68473da09da9e5a29?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="" class="sort-icon">
+                <span>분류: <span style="color: #393737;">추천순</span></span>
+            </div>
         </div>
-        <hr class="divider" />
-        <div class="afternoon-section">
-          <h2 class="afternoon-header">오후</h2>
-          <div class="time-row">
-            <button class="time-button">
-              <span class="time-label">12:00</span>
-            </button>
-            <button class="time-button">
-              <span class="time-label">13:00</span>
-            </button>
-            <button class="time-button">
-              <span class="time-label">14:00</span>
-            </button>
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/348d3b72ff7c96fe81304dbd4ef42bca0d1c8790f01de1c740bed6c678033b10?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="Map view" class="map-icon">
+    </div>
+    <div class="results-list">
+      <article class="result-card">
+        <div class="result-content">
+          <div class="result-image-container">
+            <img src="https://s3-media0.fl.yelpcdn.com/bphoto/C0W5vYWFQbpM5kM29CAbOQ/258s.jpg" alt="마운틴 마이크 피자" class="result-image">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/175b7534116e4bdb18b61a32bd6f4b7e2b36b8ce63123ae0c843ad45af46ba90?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="" class="result-logo">
           </div>
-          <div class="time-row">
-            <button class="time-button">
-              <span class="time-label">15:00</span>
-            </button>
-            <button class="time-button">
-              <span class="time-label">16:00</span>
-            </button>
-            <button class="time-button">
-              <span class="time-label">17:00</span>
-            </button>
-          </div>
-          <div class="time-row">
-            <button class="time-button">
-              <span class="time-label">18:00</span>
-            </button>
-            <button class="time-button">
-              <span class="time-label">19:00</span>
-            </button>
-            <button class="time-button">
-              <span class="time-label">20:00</span>
-            </button>
-          </div>
-          <div class="time-row">
-            <button class="time-button">
-              <span class="time-label">21:00</span>
-            </button>
-            <button class="time-button">
-              <span class="time-label">22:00</span>
-            </button>
-          </div>
-        </div>
-        <hr class="divider" />
-        <div class="info-section">
-          <div class="info-header">
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c3d2406cf748af2da10088bbf3ed1c156a66839e1e77a7f7110535685cd70e2d?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="" class="info-icon" />
-            <h3 class="info-title">예약 시 확인해 주세요</h3>
-          </div>
-          <p class="info-subtitle">꼭 확인해 주세요!</p>
-          <div class="info-content">
-            <p class="info-text">
-              예약은 메인메뉴 기준 1인 1메뉴 이상 주문 필수입니다.<br />
-              취소나 인원 변경은 최소 두시간전까지 연락 부탁드립니다.<br />
+          <div class="result-details">
+            <h2 class="result-title">NAP 나폴리탄 피자</h2>
+            <div class="star-rating">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0dbbbd69105eecf6b541f2cfc882ca29d82afefe190b970caea8098632d3f2eb?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="Star" class="star-icon">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0dbbbd69105eecf6b541f2cfc882ca29d82afefe190b970caea8098632d3f2eb?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="Star" class="star-icon">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0dbbbd69105eecf6b541f2cfc882ca29d82afefe190b970caea8098632d3f2eb?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="Star" class="star-icon">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0dbbbd69105eecf6b541f2cfc882ca29d82afefe190b970caea8098632d3f2eb?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="Star" class="star-icon">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c8892dd557591ea1944c998eb8164c7542f7bfd2eb113d71b09443674d2f83ac?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="Half Star" class="star-icon">
+            </div>
+            <p class="review-count">4.7(383개의 리뷰)</p>
+            <p class="business-info">
+              open<br>
+              영업시간 :<br>
+              11:00 - 23:00<br>
+              일요일 휴무
             </p>
           </div>
         </div>
-        <div class="additional-info">
-          <hr class="additional-info-divider" />
-          <hr class="additional-info-divider" style="margin-top: 40px; border-color: #dff1e6;" />
-          <div class="additional-info-content">
-            <ul class="additional-info-list">
-              <li>룸 이용안내</li>
-              <li>이용안내</li>
-              <li>이용시간 안내</li>
-            </ul>
+      </article>
+      <div class="divider"></div>
+      <article class="result-card">
+        <div class="result-content">
+          <div class="result-image-container">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/361aa29fdba467b0b3c15d19c67fc0fd9a4dcf8e228f43142be9e3144f86f8bf?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="마운틴 마이크 피자" class="result-image">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/175b7534116e4bdb18b61a32bd6f4b7e2b36b8ce63123ae0c843ad45af46ba90?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="" class="result-logo">
           </div>
-          <hr class="additional-info-divider" style="margin-top: -53px; border-color: #dff1e6;" />
+          <div class="result-details">
+            <h2 class="result-title">마운틴 마이크 피자</h2>
+            <div class="star-rating">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0dbbbd69105eecf6b541f2cfc882ca29d82afefe190b970caea8098632d3f2eb?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="Star" class="star-icon">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0dbbbd69105eecf6b541f2cfc882ca29d82afefe190b970caea8098632d3f2eb?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="Star" class="star-icon">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0dbbbd69105eecf6b541f2cfc882ca29d82afefe190b970caea8098632d3f2eb?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="Star" class="star-icon">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0dbbbd69105eecf6b541f2cfc882ca29d82afefe190b970caea8098632d3f2eb?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="Star" class="star-icon">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c8892dd557591ea1944c998eb8164c7542f7bfd2eb113d71b09443674d2f83ac?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="Half Star" class="star-icon">
+            </div>
+            <p class="review-count">4.4(126개의 리뷰)</p>
+            <p class="business-info">
+              open<br>
+              영업시간 :<br>
+              11:00 - 23:00<br>
+              일요일 휴무
+            </p>
+          </div>
         </div>
-        <div class="next-button-container">
-          <button class="next-button">
-            <span class="next-button-text">다음</span>
-          </button>
+      </article>
+      <div class="divider"></div>
+      <article class="result-card">
+        <div class="result-content">
+          <div class="result-image-container">
+            <img src="https://s3-media0.fl.yelpcdn.com/bphoto/2eg5OWUhp-AOh8qT4EWaSw/258s.jpg" alt="마운틴 마이크 피자" class="result-image">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/6a836e8d50ae24cb9dc3a6fcf0ed00fef42d2f8d0e42e7b6d48049f99fa0ca08?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="" class="result-logo">
+          </div>
+          <div class="result-details">
+            <h2 class="result-title">피자 이올로</h2>
+            <div class="star-rating">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0dbbbd69105eecf6b541f2cfc882ca29d82afefe190b970caea8098632d3f2eb?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="Star" class="star-icon">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0dbbbd69105eecf6b541f2cfc882ca29d82afefe190b970caea8098632d3f2eb?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="Star" class="star-icon">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0dbbbd69105eecf6b541f2cfc882ca29d82afefe190b970caea8098632d3f2eb?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="Star" class="star-icon">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0dbbbd69105eecf6b541f2cfc882ca29d82afefe190b970caea8098632d3f2eb?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="Star" class="star-icon">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c8892dd557591ea1944c998eb8164c7542f7bfd2eb113d71b09443674d2f83ac?placeholderIfAbsent=true&apiKey=e077fc336c61455a819889bea1fad419" alt="Half Star" class="star-icon">
+            </div>
+            <p class="review-count">4.3(96개의 리뷰)</p>
+            <p class="business-info">
+              open<br>
+              영업시간 :<br>
+              11:00 - 23:00<br>
+              일요일 휴무
+            </p>
+          </div>
         </div>
-      </div>
-    </section>
+      </article>
+    </div>
+  </div>
+</section>
